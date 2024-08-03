@@ -24,13 +24,12 @@ public class SmoothConfig {
     @SerialEntry public boolean lowerSkyVoidDarkness = true;
     @SerialEntry public boolean clearSkies = false;
 
-    @SuppressWarnings("deprecation")
     public static Screen configScreen(Screen parent) {
         return YetAnotherConfigLib.create(CONFIG, ((defaults, config, builder) -> builder
                 .title(Text.translatable("smooth-skies.smooth-skies"))
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("smooth-skies.smooth-skies"))
-                        .option(Option.createBuilder(int.class)
+                        .option(Option.<Integer>createBuilder()
                                 .name(Text.translatable("smooth-skies.set-fog-view-distance"))
                                 .description(OptionDescription.of(Text.translatable("smooth-skies.set-fog-view-distance.description")))
                                 .binding(96, () -> config.distance, newVal -> config.distance = newVal)
@@ -38,13 +37,13 @@ public class SmoothConfig {
                                         .range(0, 550)
                                         .step(1))
                                 .build())
-                        .option(Option.createBuilder(boolean.class)
+                        .option(Option.<Boolean>createBuilder()
                                 .name(Text.translatable("smooth-skies.lower-sky-void-darkness"))
                                 .description(OptionDescription.of(Text.translatable("smooth-skies.lower-sky-void-darkness.description")))
                                 .binding(defaults.lowerSkyVoidDarkness, () -> config.lowerSkyVoidDarkness, newVal -> config.lowerSkyVoidDarkness = newVal)
                                 .controller(TickBoxControllerBuilder::create)
                                 .build())
-                        .option(Option.createBuilder(boolean.class)
+                        .option(Option.<Boolean>createBuilder()
                                 .name(Text.translatable("smooth-skies.clear-skies"))
                                 .description(OptionDescription.of(Text.translatable("smooth-skies.clear-skies.description")))
                                 .binding(defaults.clearSkies, () -> config.clearSkies, newVal -> config.clearSkies = newVal)
