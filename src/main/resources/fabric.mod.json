@@ -14,7 +14,7 @@
 	},
 	"license": "LGPL-3.0",
 	"icon": "assets/smoothskies/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"dev.microcontrollers.smoothskies.SmoothSkies"
@@ -36,5 +36,15 @@
 	"provides": [
 		"clearvoid",
 		"clear-skies"
-	]
+	],
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.donate": "https://ko-fi.com/microcontrollers",
+				"modmenu.discord": "https://discord.gg/rejfv9kFJj",
+				"modmenu.modrinth": "https://modrinth.com/mod/sciophobia"
+			},
+			"update_checker": true
+		}
+	}
 }
