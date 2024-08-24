@@ -22,25 +22,21 @@ import org.spongepowered.asm.mixin.injection.At;
 public class BackgroundRendererMixin {
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/CubicSampler;sampleColor(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/CubicSampler$RgbFetcher;)Lnet/minecraft/util/math/Vec3d;"))
     private static Vec3d onSampleColor(Vec3d pos, CubicSampler.RgbFetcher rgbFetcher, Operation<Vec3d> original, @Local(argsOnly = true) ClientWorld world, @Local(ordinal = 0) Vec3d vec3d) {
-        if (SmoothConfig.CONFIG.instance().clearSkies && world.getDimension().hasSkyLight()) {
-            return vec3d;
-        } else {
-            return original.call(pos, rgbFetcher);
-        }
+        return (SmoothConfig.CONFIG.instance().clearSkies && world.getDimension().hasSkyLight()) ? vec3d : original.call(pos, rgbFetcher);
     }
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lorg/joml/Vector3f;dot(Lorg/joml/Vector3fc;)F"))
-    private static float afterPlaneDot(Vector3f instance, Vector3fc v, Operation<Float> original) {
+    private static float afterVectorDot(Vector3f instance, Vector3fc v, Operation<Float> original) {
         return SmoothConfig.CONFIG.instance().clearSkies ? 0F : original.call(instance, v);
     }
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"))
-    private static float onGetRainLevel(ClientWorld instance, float v, Operation<Float> original) {
+    private static float onGetRainGradient(ClientWorld instance, float v, Operation<Float> original) {
         return SmoothConfig.CONFIG.instance().clearSkies ? 0F : original.call(instance, v);
     }
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getThunderGradient(F)F"))
-    private static float onGetThunderLevel(ClientWorld instance, float v, Operation<Float> original) {
+    private static float onGetThunderGradient(ClientWorld instance, float v, Operation<Float> original) {
         return SmoothConfig.CONFIG.instance().clearSkies ? 0F : original.call(instance, v);
     }
 }
