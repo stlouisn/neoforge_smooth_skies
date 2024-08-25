@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ClientWorld.Properties.class)
 public class ClientWorldMixin {
     @ModifyReturnValue(method = "getSkyDarknessHeight", at = @At("RETURN"))
-    private double getSkyDarknessHeight(double original, HeightLimitView world) {
+    private double modifySkyDarknessHeight(double original, HeightLimitView world) {
         if (world != null && SmoothConfig.CONFIG.instance().lowerSkyVoidDarkness) return world.getBottomY();
         return original;
     }
