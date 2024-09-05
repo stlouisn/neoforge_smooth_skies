@@ -1,20 +1,20 @@
 {
 	"schemaVersion": 1,
-	"id": "smoothskies",
-	"version": "${version}",
-	"name": "Smooth Skies",
-	"description": "Smooths out the skybox colors on far render distances.",
+	"id": "${mod_id}",
+	"version": "${mod_version}",
+	"name": "${mod_name} [C]",
+	"description": "${mod_description}",
 	"authors": [
-		"Microcontrollers"
+		"${mod_authors}"
 	],
 	"contact": {
-		"homepage": "https://modrinth.com/mod/smooth-skies",
-		"sources": "https://github.com/MicrocontrollersDev/Smooth-Skies",
-		"issues": "https://github.com/MicrocontrollersDev/Smooth-Skies/issues"
+		"homepage": "${url_homepage}",
+		"sources": "${url_sources}",
+		"issues": "${url_issues}"
 	},
-	"license": "LGPL-3.0",
-	"icon": "assets/smoothskies/icon.png",
-	"environment": "client",
+	"license": "${mod_license}",
+	"icon": "assets/${mod_id}/icon.png",
+	"environment": "${mod_fabric_environment}",
 	"entrypoints": {
 		"main": [
 			"dev.microcontrollers.smoothskies.SmoothSkies"
@@ -24,27 +24,23 @@
 		]
 	},
 	"mixins": [
-		"smoothskies.mixins.json"
+		"${mod_id}.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.0",
-		"minecraft": ">=1.20",
-		"java": ">=17",
-		"fabric-api": "*",
+		"fabricloader": ">=${fabric_loader_version}",
+		"minecraft": "${minecraft_version}",
 		"yet_another_config_lib_v3": "*"
 	},
-	"provides": [
-		"clearvoid",
-		"clear-skies"
-	],
+	"recommends": {
+		"modmenu": "*"
+	},
 	"custom": {
 		"modmenu": {
 			"links": {
-				"modmenu.donate": "https://ko-fi.com/microcontrollers",
-				"modmenu.discord": "https://discord.gg/rejfv9kFJj",
-				"modmenu.modrinth": "https://modrinth.com/mod/sciophobia"
-			},
-			"update_checker": true
+				"modmenu.modrinth": "${url_modrinth}",
+				"modmenu.curseforge": "${url_curseforge}",
+				"modmenu.discord": "${url_discord}"
+			}
 		}
 	}
 }

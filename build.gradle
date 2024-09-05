@@ -1,55 +1,84 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
-	id 'maven-publish'
+	id "fabric-loom" version "${fabric_loom_version}-SNAPSHOT"
+	id "java"
 }
 
-version = project.mod_version
 group = project.maven_group
+version = project.mod_version
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = "${project.archives_base_name}-${project.minecraft_version}-fabric"
 }
 
 repositories {
-	maven { url "https://maven.terraformersmc.com/releases/" }
-	maven { url = "https://maven.isxander.dev/releases" }
-}
 
-loom {
-	runs {
-		remove server
-	}
+	// Mod Menu
+	maven { url = "https://maven.terraformersmc.com/" }
+
+	// YACL
+	maven { url = "https://maven.isxander.dev/releases" }
+
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// Yarn Mappings
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "dev.isxander.yacl:yet-another-config-lib-fabric:${project.yacl_version}"
+
+	loom {
+		mixin {
+			defaultRefmapName.set("${project.archives_base_name}-fabric-refmap.json")
+		}
+	}
+
+	// Mod Menu
+	modApi("com.terraformersmc:modmenu:${project.modmenu_version}") { exclude(module: "fabric-api") }
+
+	// YACL
+	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+
 }
 
-processResources {
-	inputs.property "version", project.version
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+	manifest {
+		attributes([
+				"Specification-Title"     : project.mod_id,
+				"Specification-Vendor"    : project.mod_authors,
+				"Specification-Version"   : "1",
+				"Implementation-Title"    : project.mod_name,
+				"Implementation-Version"  : project.mod_version,
+				"Implementation-Vendor"   : project.mod_authors,
+				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+		])
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 21
+	it.options.encoding = "UTF-8"
 }
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-}
+processResources {
+	def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
+	stringProperties.each { inputs.property(it.key, it.value) }
 
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+	["fabric.mod.json"].each {
+		filesMatching(it) {
+			expand(stringProperties) {
+				escapeBackslash = true
+			}
+		}
 	}
+}
+
+remapJar {
+	destinationDirectory.set(file("$rootDir/files"))
 }
