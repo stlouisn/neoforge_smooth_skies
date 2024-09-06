@@ -1,45 +1,44 @@
 {
-	"schemaVersion": 1,
-	"id": "${mod_id}",
-	"version": "${mod_version}",
-	"name": "${mod_name} [C]",
-	"description": "${mod_description}",
-	"authors": [
-		"${mod_authors}"
-	],
-	"contact": {
-		"homepage": "${url_homepage}",
-		"sources": "${url_sources}",
-		"issues": "${url_issues}"
-	},
-	"license": "${mod_license}",
-	"icon": "assets/${mod_id}/icon.png",
-	"environment": "${mod_fabric_environment}",
-	"entrypoints": {
-		"main": [
-			"dev.microcontrollers.smoothskies.SmoothSkies"
-		],
-		"modmenu": [
-			"dev.microcontrollers.smoothskies.config.ModMenuIntegration"
-		]
-	},
-	"mixins": [
-		"${mod_id}.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=${fabric_loader_version}",
-		"minecraft": "${minecraft_version}",
-		"yet_another_config_lib_v3": "*"
-	},
-	"recommends": {
-		"modmenu": "*"
-	},
-	"custom": {
-		"modmenu": {
-			"links": {
-				"modmenu.modrinth": "${url_modrinth}",
-				"modmenu.discord": "${url_discord}"
-			}
-		}
-	}
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name} [C]",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_authors}"
+  ],
+  "contact": {
+    "homepage": "${url_homepage}",
+    "sources": "${url_sources}",
+    "issues": "${url_issues}"
+  },
+  "license": "${mod_license}",
+  "icon": "assets/${mod_id}/icon.png",
+  "environment": "${mod_fabric_environment}",
+  "entrypoints": {
+    "main": [
+      "dev.microcontrollers.smoothskies.SmoothSkies"
+    ],
+    "modmenu": [
+      "dev.microcontrollers.smoothskies.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${minecraft_version}",
+    "yet_another_config_lib_v3": "*"
+  },
+  "recommends": {
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "${url_modrinth}"
+      }
+    }
+  }
 }
