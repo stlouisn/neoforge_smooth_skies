@@ -1,6 +1,6 @@
 {
 
-  "modmenu.homepage": "${url_homepage_name}"
+  "modmenu.homepage": "${url_homepage_name}",
 
   "smooth-skies.smooth-skies": "Smooth Skies",
   "smooth-skies.set-fog-view-distance": "Set Fog View Distance",
