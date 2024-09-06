@@ -11,6 +11,6 @@ public class SmoothSkies implements ModInitializer {
   public static final Logger LOGGER = LoggerFactory.getLogger(Constants.MOD_ID);
 
   public void onInitialize() {
-    ModConfig.CONFIG.load();
+    ModConfig.init();
   }
 }
