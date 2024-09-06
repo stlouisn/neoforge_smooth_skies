@@ -17,10 +17,10 @@
   "environment": "${mod_fabric_environment}",
   "entrypoints": {
     "main": [
-      "dev.microcontrollers.smoothskies.SmoothSkies"
+      "dev.smoothskies.SmoothSkies"
     ],
     "modmenu": [
-      "dev.microcontrollers.smoothskies.config.ModMenuIntegration"
+      "dev.smoothskies.config.ModMenuIntegration"
     ]
   },
   "mixins": [

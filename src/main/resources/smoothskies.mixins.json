@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "dev.microcontrollers.smoothskies.mixin",
+  "package": "dev.smoothskies.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8.5",
   "client": [
