@@ -17,10 +17,10 @@
   "environment": "${mod_fabric_environment}",
   "entrypoints": {
     "main": [
-      "dev.smoothskies.SmoothSkies"
+      "${maven_group}.${maven_entrypoint}"
     ],
     "modmenu": [
-      "dev.smoothskies.config.ModMenuIntegration"
+      "${maven_group}.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -37,7 +37,7 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.modrinth": "${url_modrinth}"
+        "modmenu.homepage": "${url_homepage}"
       }
     }
   }
