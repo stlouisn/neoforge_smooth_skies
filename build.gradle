@@ -1,84 +1,90 @@
 plugins {
-	id "fabric-loom" version "${fabric_loom_version}-SNAPSHOT"
-	id "java"
+  id "fabric-loom" version "${fabric_loom_version}-SNAPSHOT"
+  id "java"
 }
 
 group = project.maven_group
 version = project.mod_version
 
 base {
-	archivesName = "${project.archives_base_name}-${project.minecraft_version}-fabric"
+  archivesName = "${project.archives_base_name}-${project.minecraft_version}-fabric"
 }
 
 repositories {
 
-	// Mod Menu
-	maven { url = "https://maven.terraformersmc.com/" }
+  // Mod Menu
+  maven { url = "https://maven.terraformersmc.com/" }
 
-	// YACL
-	maven { url = "https://maven.isxander.dev/releases" }
+  // YACL
+  maven { url = "https://maven.isxander.dev/releases" }
 
 }
 
 dependencies {
 
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+  minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+  modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// Yarn Mappings
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+  // Yarn Mappings
+  mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
-	loom {
-		mixin {
-			defaultRefmapName.set("${project.archives_base_name}-fabric-refmap.json")
-		}
-	}
+  loom {
 
-	// Mod Menu
-	modApi("com.terraformersmc:modmenu:${project.modmenu_version}") { exclude(module: "fabric-api") }
+    mixin {
+      defaultRefmapName.set("${project.archives_base_name}.refmap.json")
+    }
 
-	// YACL
-	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+    if (file("src/main/resources/${project.archives_base_name}.accesswidener").exists()) {
+      accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+    }
+
+  }
+
+  // Mod Menu
+  modApi("com.terraformersmc:modmenu:${project.modmenu_version}") { exclude(module: "fabric-api") }
+
+  // YACL
+  modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+  sourceCompatibility = JavaVersion.VERSION_21
+  targetCompatibility = JavaVersion.VERSION_21
 
-	manifest {
-		attributes([
-				"Specification-Title"     : project.mod_id,
-				"Specification-Vendor"    : project.mod_authors,
-				"Specification-Version"   : "1",
-				"Implementation-Title"    : project.mod_name,
-				"Implementation-Version"  : project.mod_version,
-				"Implementation-Vendor"   : project.mod_authors,
-				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-		])
-	}
+  manifest {
+    attributes([
+        "Specification-Title"     : project.mod_id,
+        "Specification-Vendor"    : project.mod_authors,
+        "Specification-Version"   : "1",
+        "Implementation-Title"    : project.mod_name,
+        "Implementation-Version"  : project.mod_version,
+        "Implementation-Vendor"   : project.mod_authors,
+        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    ])
+  }
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-	it.options.encoding = "UTF-8"
+  it.options.release = 21
+  it.options.encoding = "UTF-8"
 }
 
 processResources {
-	def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
-	stringProperties.each { inputs.property(it.key, it.value) }
+  def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
+  stringProperties.each { inputs.property(it.key, it.value) }
 
-	["fabric.mod.json"].each {
-		filesMatching(it) {
-			expand(stringProperties) {
-				escapeBackslash = true
-			}
-		}
-	}
+  ["fabric.mod.json"].each {
+    filesMatching(it) {
+      expand(stringProperties) {
+        escapeBackslash = true
+      }
+    }
+  }
 }
 
 remapJar {
-	destinationDirectory.set(file("$rootDir/files"))
+  destinationDirectory.set(file("$rootDir/files"))
 }
