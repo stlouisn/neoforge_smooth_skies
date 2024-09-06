@@ -12,6 +12,9 @@ base {
 
 repositories {
 
+  // Mixin Extras
+  maven { url 'https://jitpack.io' }
+
   // Mod Menu
   maven { url = "https://maven.terraformersmc.com/" }
 
@@ -41,6 +44,9 @@ dependencies {
     }
 
   }
+
+  // Mixin Extras
+  include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 
   // Mod Menu
   modApi("com.terraformersmc:modmenu:${project.modmenu_version}") { exclude(module: "fabric-api") }
