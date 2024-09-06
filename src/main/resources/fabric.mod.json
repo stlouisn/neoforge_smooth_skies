@@ -38,7 +38,6 @@
 		"modmenu": {
 			"links": {
 				"modmenu.modrinth": "${url_modrinth}",
-				"modmenu.curseforge": "${url_curseforge}",
 				"modmenu.discord": "${url_discord}"
 			}
 		}
