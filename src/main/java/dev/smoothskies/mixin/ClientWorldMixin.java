@@ -12,7 +12,7 @@ public class ClientWorldMixin {
 
   @ModifyReturnValue(method = "getSkyDarknessHeight", at = @At("RETURN"))
   private double modifySkyDarknessHeight(double original, HeightLimitView world) {
-    if (world != null && ModConfig.CONFIG.instance().lowerSkyVoidDarkness) {
+    if (world != null && ModConfig.getInstance().lowerSkyVoidDarkness) {
       return world.getBottomY();
     }
     return original;
