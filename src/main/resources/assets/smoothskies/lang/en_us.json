@@ -1,7 +1,4 @@
 {
-
-  "modmenu.homepage": "${url_homepage_name}",
-
   "text.autoconfig.smoothskies.title": "Smooth Skies",
   "text.autoconfig.smoothskies.option.distance": "Set Fog View Distance",
   "text.autoconfig.smoothskies.option.distance.@Tooltip": "Set a custom view distance for the skybox fog. Higher numbers mean bluer skies.",
@@ -9,5 +6,4 @@
   "text.autoconfig.smoothskies.option.lowerSkyVoidDarkness.@Tooltip": "Lowers the required height for the sky to turn black to the world's lowest height. This prevents the sky turning black at a high Y value. Most noticeable in Skyblock-type worlds.",
   "text.autoconfig.smoothskies.option.clearSkies": "Clear Skies",
   "text.autoconfig.smoothskies.option.clearSkies.@Tooltip": "Removes banding on the horizon, making the sky one uniform color."
-
 }
