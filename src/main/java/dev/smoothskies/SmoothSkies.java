@@ -19,15 +19,10 @@ public final class SmoothSkies {
 
   public SmoothSkies(IEventBus modBus) {
     modBus.addListener(this::commonSetup);
-    modBus.addListener(this::clientSetup);
     ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (client, parent) -> AutoConfig.getConfigScreen(ModConfigData.class, parent).get());
   }
 
   private void commonSetup(FMLCommonSetupEvent event) {
     event.enqueueWork(ModConfig::init);
-  }
-
-  private void clientSetup(FMLClientSetupEvent event) {
-    event.enqueueWork(SmoothSkiesClient::init);
   }
 }
