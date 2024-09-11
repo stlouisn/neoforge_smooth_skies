@@ -19,5 +19,8 @@ public final class ModConfig {
   }
 
   public static void init() {
+    StringSetGuiProvider<Identifier> guiProvider = new StringSetGuiProvider<>(Identifier.class, Identifier::of);
+    AutoConfig.getGuiRegistry(ModConfigData.class).registerPredicateProvider(guiProvider, guiProvider.getPredicate());
+    AutoConfig.getGuiRegistry(ModConfigData.class).registerTypeProvider(new IdentifierGuiProvider(), Identifier.class);
   }
 }
