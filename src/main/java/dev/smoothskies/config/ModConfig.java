@@ -5,6 +5,9 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Jankson;
 import net.minecraft.util.Identifier;
+//import dev.smoothskies.config.IdentifierGuiProvider;
+//import dev.smoothskies.config.ModConfigData;
+//import dev.smoothskies.config.StringSetGuiProvider;
 
 public final class ModConfig {
 
@@ -22,5 +25,6 @@ public final class ModConfig {
     StringSetGuiProvider<Identifier> guiProvider = new StringSetGuiProvider<>(Identifier.class, Identifier::of);
     AutoConfig.getGuiRegistry(ModConfigData.class).registerPredicateProvider(guiProvider, guiProvider.getPredicate());
     AutoConfig.getGuiRegistry(ModConfigData.class).registerTypeProvider(new IdentifierGuiProvider(), Identifier.class);
+// try replacing ModConfigData with this?
   }
 }
