@@ -1,5 +1,6 @@
 package dev.smoothskies.mixin;
 
+import dev.smoothskies.config.ModConfig;
 import dev.smoothskies.config.ModConfigData;
 import net.minecraft.client.render.WorldRenderer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,6 +12,6 @@ public class WorldRendererMixin {
 
   @ModifyArg(method = "method_37365", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/BackgroundRenderer;applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZF)V"), index = 2)
   private static float setMaxFogViewDistance(float h) {
-    return Math.min(h, ModConfigData.getInstance().distance);
+    return Math.min(h, ModConfig.CONFIG.distance);
   }
 }
