@@ -5,7 +5,7 @@
   "smoothskies.configuration.distance": "Set Fog View Distance",
   "smoothskies.configuration.distance.tooltip": "Set a custom view distance for the skybox fog. Higher numbers mean bluer skies.",
   "smoothskies.configuration.lowerSkyVoidDarkness": "Lower Sky Void Darkness",
-  "smoothskies.configuration.lowerSkyVoidDarkness.tooltip": "Lowers the required height for the sky to turn black to the world's lowest height. This prevents the sky turning black at a high Y value. Most noticeable in Skyblock-type worlds.",
+  "smoothskies.configuration.lowerSkyVoidDarkness.tooltip": "Lowers the required height for the sky to turn black to the world's lowest height. This prevents the sky turning black at a high Y value.",
   "smoothskies.configuration.clearSkies": "Clear Skies",
   "smoothskies.configuration.clearSkies.tooltip": "Removes banding on the horizon, making the sky one uniform color."
 }
