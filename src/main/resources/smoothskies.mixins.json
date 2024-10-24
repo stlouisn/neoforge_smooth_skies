@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8.5",
   "client": [
-    "BackgroundRendererMixin",
-    "ClientWorldMixin",
-    "WorldRendererMixin"
+    "ClientLevelMixin",
+    "FogRendererMixin",
+    "LevelRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
